@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{{ url_for('AQI') }}" class="box_form">
+        <div class="form-group">
+            <label for="Location"><b>Location</b></label>
+            <input type="text" class="form-control" id="Location" name="Location" required />
+        </div>
+        <div class="form-group">
+            <label for="Date"><b>Date</b></label>
+            <input type="date" class="form-control" id="Date" name="Date" required />
+        </div>
+        <button type="submit" class="btn" id="submit">
+            Predict
+        </button>
+
+    </form>
+    {{ prediction }}
+</body>
+</html>

@@ -3,24 +3,29 @@ import numpy as np
 import requests
 import pickle
 import io
-
-import cv2
 from io import BytesIO
 import base64
-
-# Trained Models loaded
-# crop_recommendation_model_path = 'models/RandomForest.pkl'
-# crop_recommendation_model = pickle.load(
-#     open(crop_recommendation_model_path, 'rb'))
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+import warnings
+warnings.filterwarnings("ignore")
+from IPython.display import HTML,display
+from prophet import Prophet
+from sklearn.metrics import mean_squared_error
+from statsmodels.tsa.seasonal import seasonal_decompose
+warnings.filterwarnings("ignore")
 
 #  FLASK APP 
 app = Flask(__name__)
 
 # render home page
-@ app.route('/')
-def home():
-    title = 'Home'
-    return render_template('index.html', title=title)
+# @ app.route('/')
+# def home():
+#     title = 'Home'
+#     return render_template('index.html', title=title)
 
 @ app.route('/home')
 def start():
@@ -30,23 +35,19 @@ def start():
 
 # RENDER PREDICTION PAGES
 
-# @ app.route('/crop-predict', methods=['POST'])
-# def crop_prediction():
-#     title = 'Crop Recommendation'
-
-#     if request.method == 'POST':
-#         N = int(request.form['nitrogen'])
-#         P = int(request.form['phosphorous'])
-#         K = int(request.form['pottasium'])
-#         ph = float(request.form['ph'])
-#         rainfall = float(request.form['rainfall'])
-#         temperature = float(request.form['temperature'])
-#         humidity = float(request.form['humidity'])
-
-#         data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
-#         my_prediction = crop_recommendation_model.predict(data)
-#         final_prediction = my_prediction[0]
-#         return render_template('crop_prediction.html', prediction=final_prediction, title=title)
+@ app.route('/' ,  methods=['GET', 'POST'])
+def AQI():
+    title = 'AQI'
+    if request.method == 'POST':
+        location = str(request.form['Location'])
+        date = request.form['Date']
+        path = "AQI_Predictions/"
+        path += str(location)
+        path += "_AQI.csv"
+        df = pd.read_csv(path, parse_dates=True, index_col = "ds")
+        final = df._get_value(date, 'yhat')
+        return render_template('AQI.html', prediction=final, title=title)
+    return render_template('AQI.html', prediction=1, title=title)
         
 
 if __name__ == '__main__':
