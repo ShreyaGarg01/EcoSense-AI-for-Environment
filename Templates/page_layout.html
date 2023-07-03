@@ -7,6 +7,8 @@
 	<meta name="author" content="">
 	<title>{{title}}</title>
 	<!-- Bootstrap core CSS -->
+	<!-- {{url_for('static', filename='line_plot.png')}} -->
+
     <!-- <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet"> -->
 	<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,29 +19,24 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark top-nav fixed-top" style="background-color:#263238; ">
         <div class="container">
-            <a class="navbar-brand" href="index">
-            <img src="images/logo.png" alt="logo" />
+            <a class="navbar-brand" href="home" style="width: min-content;">
+            <img src="{{url_for('static', filename='images/logo.png')}}" alt="" style="width: 220px;"/>
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="fas fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                     <a class="nav-link active" href="home">Home</a>
+                  <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
+                     <a class="nav-link" href="home">City Data</a>
                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="about">About</a>
+                  <li class="nav-item {% if active_page == 'india' %}active{% endif %}">
+                     <a class="nav-link" href="india_analysis">India Data</a>
                   </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link" href="aqi">AQI</a>
-                 </li>
-                 
-                  <li class="nav-item">
-                     <a class="nav-link" href="contact">Contact</a>
+                  <li class="nav-item {% if active_page == 'quotes' %}active{% endif %}">
+                     <a class="nav-link" href="quotes">More Info</a>
                   </li>
                </ul>
             </div>
@@ -50,30 +47,22 @@
     <!-- /.container -->
     <!--footer starts from here-->
     <footer class="footer">
-        <div class="container bottom_border">
-            <div class="row">
-               <div class="col-lg-3 col-md-6 col-sm-6 col">
-					<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
-					<!--headin5_amrc-->
-					<p class="mb10">Env</p>
-					<p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
-					<p><i class="fa fa-phone"></i> +91-9999878398 </p>
-					<p><i class="fa fa fa-envelope"></i> info@example.com </p>
-               </div>
-			</div>
-		</div>
-        <div class="container">
+        
+        <div class="container" style="height: auto;">
             <div class="footer-logo">
-				<a href="#"><img src="images/footer-logo.png" alt="" /></a>
+				<!-- {{url_for('static', filename='line_plot.png')}} -->
+				<!-- <a href="#"><img src="images/footer-logo.png" alt="" /></a> -->
+				<img src="{{url_for('static', filename='images/footer-logo.png')}}" alt="" />
+
 			</div>
             <!--foote_bottom_ul_amrc ends here-->
             <p class="copyright text-center">All Rights Reserved. &copy; 2023 <a href="#"></a><br> Made with &hearts;
 				<!-- <a href="https://html.design/">html design</a> -->
             </p>
-            <ul class="social_footer_ul">
+            <!-- <ul class="social_footer_ul">
 				<li><a href="#"><i class="fab fa-github"></i></a></li>
 				<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
+            </ul> -->
             <!--social_footer_ul ends here-->
         </div>
     </footer>

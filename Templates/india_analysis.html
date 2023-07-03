@@ -1,0 +1,65 @@
+{% extends 'page_layout.html' %}
+
+{% block body %}
+
+
+<div class="container">
+    <!-- <div class="col-lg-8 mb-4 contact-left"> -->
+    
+</div>
+<div class="trends" >
+    Forest Cover
+   </div>
+    <div class="chartImg">
+    <img id="weeklyAQI" src="/static/images/trees.png" alt="Line Plot" style="width: 60%;">
+</div>
+<div class="trends" >
+    Mean WQI over the years
+   </div>
+    <div class="chartImg">
+    <img id="weeklyAQI" src="/static/images/WQI.png" alt="Line Plot"  style="width: 70%;">
+</div>
+
+<div class="trends" >
+    Boxplot of AQIs of Indian Cities
+   </div>
+    <div class="chartImg">
+    <img id="weeklyAQI" src="/static/images/AQI_cities.png" alt="Line Plot"  style="width: 70%;">
+</div>
+
+    <!-- <img id="yearlyAQI" src="{{ bar_plot }}" alt="Line Plot"> -->
+
+
+</div>
+    
+
+</div>
+
+
+    
+
+</div>
+<!-- <script>
+    var resultDiv = document.getElementById('result');
+    var x = document.getElementById('resultCard');
+    var temp = document.getElementById('temp')
+    
+    var urlParams = new URLSearchParams(window.location.search);
+    var result = urlParams.get('c');
+    // console.log(result)
+
+    if (result == "tree"){
+        x = document.getElementById('resultCard');
+        x.style.display = 'flex';
+        x.style.flexWrap='wrap';
+        x.style.justifyContent='space-between'
+        var image = document.getElementById("tree");
+            if (image) {
+                image.setAttribute("src", urlParams.get('file'));                
+            }
+
+    }
+    
+    
+</script> -->
+{% endblock %}

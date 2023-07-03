@@ -5,7 +5,8 @@
 
 <div class="container">
     <!-- <div class="col-lg-8 mb-4 contact-left"> -->
-    <form method="POST" action="/result" class="form-inline" id="predictionForm" style="gap: 2.7%;margin-bottom:5rem;width: 41vw;padding: 1.8%;background-color: #F7FFE5;border-radius: 5px;box-shadow: 3px 3px #E1ECC8;">
+    <form method="POST" action="/result" class="form-inline" id="predictionForm"
+        style="gap: 2.7%;margin-bottom:5rem;width: 41vw;padding: 1.8%;background-color: #F7FFE5;border-radius: 5px;box-shadow: 3px 3px #E1ECC8;">
         <div class="form-group">
             <label for="Location"><b>City: &nbsp; </b></label>
             <!-- <input type="text" class="form-control" id="Location" name="Location" required /> -->
@@ -26,117 +27,116 @@
             <label for="Date"><b>Date: &nbsp; </b></label>
             <input type="date" class="form-control" id="Date" name="Date" required />
         </div>
-        
+
         <button type="submit" id="submit" style="border: none;background-color: transparent">
             <i class="fa fa-search" style="color:green; font-size: large;"></i>
         </button>
-       
+
 
     </form>
-    <!-- <div class="card h-100">
-        <h3 class="card-header">Basic</h3>
-        <div class="card-body">
-            <div class="display-4">$19.99</div>
-            <div class="font-italic">per month</div>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">
-                <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-        </ul>
-    </div> -->
+
     <div class="pricing-box">
-    <div class="popup" style="display:none; margin-top: 2%;" id="resultCard">
-        
-    <h3>
-        <div class="mb-4">
-            <div class="card h-100" style="width: 20vw;">
-                <h3 class="card-header">AQI</h3>
-                <div class="card-body">
-                    
-                    <div class="display-4" id="result">{{result}}</div>
-                    <div class="font-italic">ppm</div>
-                </div>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" id="type">{{type}}</li>
-                
-            </ul>
-        </div>       
-        
-    </h3>
-    <h3 id="result">
-        <div class="mb-4">
-            <div class="card h-100" style="width: 20vw;">
-                <h3 class="card-header">Temperature</h3>
-
-                <div class="card-body">
-                    <div class="display-4" id = "temp">{{ temp }}</div>
-                    <div class="font-italic">C</div>
-                </div>
-            </div>
-            <ul class="list-group list-group-flush">                
-                <li class="list-group-item" >Max-temp = <div id= "maxtemp">{{ maxtemp}}</div></li>
-                <li class="list-group-item" >Min-temp = <div id= "mintemp">{{ mintemp}}</div></li>
-            </ul>
-        </div>       
-        
-    </h3>
-    <h3 id="result">
-        <div class="mb-4">
-            <div class="card h-100" style="width: 20vw;">
-                <h3 class="card-header">Precipitation</h3>
-
-                <div class="card-body">
-                    
-                    <div class="display-4" id="preci">{{ preci }}</div>
-                    <div class="font-italic">mm</div>
-
-                </div>
-            </div>
-            <ul class="list-group list-group-flush">                
-                <li class="list-group-item" >Humidity = <div id= "humidity">{{ humidity}}</div></li>
-            </ul>
-        </div>       
-        
-    </h3>
-
-
-
-    <h3 id="result">
-        <div class="mb-4">
-            <div class="card h-100" style="width: 20vw;">
-                <h3 class="card-header">Pressure</h3>
-                <div class="card-body">
-                    
-                    <div class="display-4" id = 'pressure'>{{ pressure }}</div>
-                </div>
-                <ul class="list-group list-group-flush">                
-                    <li class="list-group-item" >Wind Speed = <div id= "windspeed">{{ windspeed}}</div></li>
-                    <li class="list-group-item" >Visibility = <div id= "visibility">{{ visibility}}</div></li>
-
-                </ul>
-            </div>
-        </div>               
-    </h3>
     
-    
+        <div class="popup" style="display:none; margin-top: 2%;" id="resultCard">
+            <h3>
+                <div class="mb-4">
+                    <div class="card h-100" style="width: 20vw;">
+                        <h3 class="card-header">AQI</h3>
+                        <div class="card-body">
 
-</div></div></div></div>
+                            <div class="display-4" id="result">{{result}}</div>
+                            <div class="font-italic">ppm</div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" id="type">{{type}}</li>
+
+                    </ul>
+                </div></div>
+
+            </h3>
+            <h3 id="result">
+                <div class="mb-4">
+                    <div class="card h-100" style="width: 20vw;">
+                        <h3 class="card-header">Temperature</h3>
+
+                        <div class="card-body">
+                            <div class="display-4" id="temp">{{ temp }}</div>
+                            <div class="font-italic">C</div>
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Max-temp = <div id="maxtemp">{{ maxtemp}}</div>
+                        </li>
+                        <li class="list-group-item">Min-temp = <div id="mintemp">{{ mintemp}}</div>
+                        </li>
+                    </ul>
+                </div></div>
+
+            </h3>
+            <h3 id="result">
+                <div class="mb-4">
+                    <div class="card h-100" style="width: 20vw;">
+                        <h3 class="card-header">Precipitation</h3>
+
+                        <div class="card-body">
+
+                            <div class="display-4" id="preci">{{ preci }}</div>
+                            <div class="font-italic">mm</div>
+
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Humidity = <div id="humidity">{{ humidity}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            </h3>
 
 
 
-    
+            <h3 id="result">
+                <div class="mb-4">
+                    <div class="card h-100" style="width: 20vw;">
+                        <h3 class="card-header">Pressure</h3>
+                        <div class="card-body">
+
+                            <div class="display-4" id='pressure'>{{ pressure }}</div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Wind Speed = <div id="windspeed">{{ windspeed}}</div>
+                            </li>
+                            <li class="list-group-item">Visibility = <div id="visibility">{{ visibility}}</div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </h3>
+
+            <br>
+            
+        </div>
+        <img id="weeklyAQI" src="{{ plot_filename }}" alt="Line Plot">
+        <img id="yearlyAQI" src="{{ bar_plot }}" alt="Line Plot">
+
+
+    </div>
+</div>
+</div>
+
+
+
+
 
 </div>
 <script>
     var resultDiv = document.getElementById('result');
     var x = document.getElementById('resultCard');
     var temp = document.getElementById('temp')
-    
+
     var urlParams = new URLSearchParams(window.location.search);
     var result = urlParams.get('result');
     var temperature = urlParams.get('temp');
@@ -147,11 +147,11 @@
     else if (result <= 200) aqiclass = "Poor"
     else if (result <= 250) aqiclass = "Very Poor"
     else aqiclass = "Severe"
-    
+
     if (result) {
         resultDiv.innerHTML = result;
         temp.innerHTML = temperature;
-        document.getElementById("maxtemp").innerHTML = Math.max(urlParams.get('maxtemp'),temperature);
+        document.getElementById("maxtemp").innerHTML = Math.max(urlParams.get('maxtemp'), temperature);
         document.getElementById("mintemp").innerHTML = urlParams.get('mintemp');
         document.getElementById("pressure").innerHTML = urlParams.get('pressure');
         document.getElementById("visibility").innerHTML = urlParams.get('visibility');
@@ -159,12 +159,20 @@
         document.getElementById("preci").innerHTML = urlParams.get('preci');
         document.getElementById("humidity").innerHTML = urlParams.get('humidity');
         document.getElementById("type").innerHTML = aqiclass;
-        
-
-
+        var image = document.getElementById("weeklyAQI");
+            if (image) {
+                image.setAttribute("src", urlParams.get('plot_filename'));
+                
+            }
+        var image2 = document.getElementById("yearlyAQI");
+            if (image2) {
+                image2.setAttribute("src", urlParams.get('bar_plot'));
+                
+            }
+            
         x.style.display = 'flex';
-        x.style.flexWrap='wrap';
-        x.style.justifyContent='space-between'
+        x.style.flexWrap = 'wrap';
+        x.style.justifyContent = 'space-between'
     }
 </script>
 {% endblock %}

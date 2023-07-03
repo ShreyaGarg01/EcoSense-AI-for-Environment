@@ -1,0 +1,20 @@
+{% extends 'page_layout.html' %}
+
+{% block body %}
+
+<div class="container">
+   
+    
+    <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+      <p class="lead" style="font-weight: 600;color: #243D25;">About EcoSense:</p>
+      <ul class="list-group list-group-flush" style="display: flex; gap: 4px;">
+        {% for quote in quotes %}
+            <li class="list-group-item">{{ quote }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+<script>
+    
+</script>
+{% endblock %}
