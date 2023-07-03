@@ -3,7 +3,6 @@ import warnings
 warnings.filterwarnings('ignore')
 import pandas as pd
 import numpy as np
-
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.tools.eval_measures import rmse
@@ -39,42 +38,39 @@ def test_train_splitting(df):
 # %%
 # future = m.make_future_dataframe(periods=12,freq = 'MS')
 def predict(train,i, test):
-    m = Prophet(seasonality_mode='multiplicative')
+    m = Prophet(seasonality_mode='multiplicative', yearly_seasonality= True, weekly_seasonality=False, daily_seasonality= True)
+    m.add_seasonality(name='hourly', period=1/24, fourier_order=5)
     m.fit(train)
-    future = m.make_future_dataframe(periods=12, freq = 'MS') 
+    future = m.make_future_dataframe(periods=365*4*24, freq='H') 
     forecast = m.predict(future)
+    forecast.to_csv("fore.csv")
     fig1 = m.plot(forecast)
     plt.legend(['Actual', 'Prediction', 'Uncertainty interval'])
-    # plt.savefig('components'+i+'.png')
-    fig1.savefig('forecast'+i+'.png')   # save the figure to file
-    plt.close(fig1)
+    # # plt.savefig('components'+i+'.png')
+    plt.show()
     fig2 = m.plot_components(forecast)
-    fig2.savefig('components'+i+'.png')
-    plt.close(fig2)
-    predictions = forecast.iloc[-len(test):]['yhat']
-    actuals = test['y']
-    mse = rmse(predictions, actuals)
-    print(f"RMSE: {round(mse)}")    
-    return forecast, mse
-
-
+    plt.show()
+    # predictions = forecast.iloc[-len(test):]['yhat']
+    # actuals = test['y']
+    # mse = rmse(predictions, actuals)
+    # print(f"RMSE: {round(mse)}")    
+    return forecast, 0
 
 #%%
-df = pd.read_csv("daily_dataset\jaipur.csv", parse_dates=['date_time'], index_col='date_time')
-x = df.columns[11:]
+df = pd.read_csv(".\Datasets\jaipur.csv", parse_dates=['date_time'], index_col='date_time')
+x = df.columns[:1]
 params = []
 rmses = []
 figs = []
 graphs = []
+
 for i in x:
-    df = get_df_for_prediction("daily_dataset\jaipur.csv", i)
+    df = get_df_for_prediction(".\Datasets\jaipur.csv", i)
     train, test = test_train_splitting(df)
-    # model = modelling(train)
     forecast, rms = predict(train, i, test)
-    # rmse = calc_rmse(forecast, test)
-    # fig = comps(model, forecast)
-    params.append(i)
-    rmses.append(rms)
+    print(forecast)
+
+    
 
 df = pd.DataFrame(list(zip(params, rmses)),
                 columns =['Parameter', 'RMSE'])

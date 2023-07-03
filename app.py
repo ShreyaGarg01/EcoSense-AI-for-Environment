@@ -48,6 +48,21 @@ def AQI():
         final = df._get_value(date, 'yhat')
         return render_template('AQI.html', prediction=final, title=title)
     return render_template('AQI.html', prediction=1, title=title)
+
+
+@ app.route('/weather' ,  methods=['GET', 'POST'])
+def weather():
+    title = 'AQI'
+    if request.method == 'POST':
+        location = str(request.form['Location'])
+        date = request.form['Date']
+        path = "AQI_Predictions/"
+        path += str(location)
+        path += "_AQI.csv"
+        df = pd.read_csv(path, parse_dates=True, index_col = "ds")
+        final = df._get_value(date, 'yhat')
+        return render_template('AQI.html', prediction=final, title=title)
+    return render_template('AQI.html', prediction=1, title=title)
         
 
 if __name__ == '__main__':
