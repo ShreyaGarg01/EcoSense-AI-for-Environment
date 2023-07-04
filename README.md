@@ -6,15 +6,15 @@ The environment is in a crisis. Climate change, pollution, and deforestation are
 
 ## Screenshots of the app
 
-<img width="960" alt="image" src="https://github.com/ShreyaGarg01/Hackathon/assets/96676937/00f394f5-7128-48ca-a2c5-2835990c286f">
+<img width="960" alt="image" src="https://github.com/ShreyaGarg01/EcoSense-AI-for-Environment/assets/96676937/857c42fa-501a-4653-863b-2a17ce46dd2b">
 
-<img width="960" alt="image" src="https://github.com/ShreyaGarg01/Hackathon/assets/96676937/6d680afb-03e5-476c-afbe-76e02e92fc7b">
+<img width="960" alt="image" src="https://github.com/ShreyaGarg01/EcoSense-AI-for-Environment/assets/96676937/6d680afb-03e5-476c-afbe-76e02e92fc7b">
 
-<img width="960" alt="image" src="https://github.com/ShreyaGarg01/Hackathon/assets/96676937/be8cc9f3-3c98-4c47-94bb-6d051d679dfe">
+<img width="960" alt="image" src="https://github.com/ShreyaGarg01/EcoSense-AI-for-Environment/assets/96676937/be8cc9f3-3c98-4c47-94bb-6d051d679dfe">
 
-<img width="960" alt="image" src="https://github.com/ShreyaGarg01/Hackathon/assets/96676937/bf34032a-eca1-4a42-bcfa-78a27ec3ab33">
+<img width="960" alt="image" src="https://github.com/ShreyaGarg01/EcoSense-AI-for-Environment/assets/96676937/bf34032a-eca1-4a42-bcfa-78a27ec3ab33">
 
-<img width="960" alt="image" src="https://github.com/ShreyaGarg01/Hackathon/assets/96676937/0d8d4362-a4bf-49fe-b748-7f18e7729f33">
+<img width="960" alt="image" src="https://github.com/ShreyaGarg01/EcoSense-AI-for-Environment/assets/96676937/0d8d4362-a4bf-49fe-b748-7f18e7729f33">
 
 
 
