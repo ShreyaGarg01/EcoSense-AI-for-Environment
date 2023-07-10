@@ -121,10 +121,10 @@ def result():
         plt.savefig(plot_filename_aqi_yearly)
         plot_filename_aqi_yearly = '/static/bar_plot.png'
 
-        return redirect(url_for('home', result=finalAQI, maxtemp = maxtemp, mintemp=mintemp,
-                               humidity=humidity,preci=preci,pressure=pressure, temp=temp, visibility=visibility,
-                               windspeed=windspeed,  title=title, plot_filename=plot_filename_aqi, 
-                               bar_plot=plot_filename_aqi_yearly))
+        return render_template('index.html', aqi=finalAQI, result=finalAQI, maxtemp = maxtemp, mintemp=mintemp,
+                            humidity=humidity,preci=preci,pressure=pressure, temp=temp, visibility=visibility,
+                            windspeed=windspeed,  title=title, plot_filename=plot_filename_aqi, 
+                            bar_plot=plot_filename_aqi_yearly, city=location)
         
     return render_template('AQI.html',  title=title)
 
