@@ -19,7 +19,6 @@ def plot_vals_aqi_weekly(city,date):
     df = df[start_of_week:week_dates[6]]
    
     y = df['yhat']
-    
    
     sns.set(style="darkgrid")  # Set the style of the plot
     plt.figure(figsize=(8, 6))  # Set the figure size

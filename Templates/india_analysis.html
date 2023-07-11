@@ -5,38 +5,114 @@
 
 <div class="container">
     <!-- <div class="col-lg-8 mb-4 contact-left"> -->
-    
+    <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+        <!-- <p class="lead" style="font-weight: 600;color: #243D25;"></p> -->
+        <ul class="list-group list-group-flush" style="display: flex; flex-direction: row;" id="insights">
+            <ul style="display: flex; flex-direction: column;  align-items: center;
+                justify-content: center;">
+                <div class="trends">
+                    Forest Cover
+                </div>
+                <div class="chartImg">
+                    <img id="weeklyAQI" style="height: fit-content; width: 100%;" src="/static/images/trees.png"
+                        alt="Line Plot" style="width: 60%;">
+                </div>
+            </ul>
+            <ul style="display: flex; flex-direction: column; gap: 4px; ">
+                <p class="lead" style="font-weight: 600;color: #243D25;">How can we preserve Forests</p>
+                <!-- <ul class="list-group list-group-flush" style="display: flex; gap: 4px;" id="insights"> -->
+                <!-- <li class="list-group-item">
+                        With the advent of industrialization, several trees have been cut at an alarming rate for raw materials and various other purposes. This felling of trees can be regulated by selective cutting, clear-cutting and shelterwood cutting.
+                    </li> -->
+                
+                <li class="list-group-item">
+                    More trees should be planted to increase the forest cover.
+                </li>
+                <li class="list-group-item">
+                    Trees should be selected according to the geographical conditions of a particular region and proper care should be taken during the growth of
+                    trees.
+                </li>
+                <li class="list-group-item">
+                    Prevention of exploitation of forestry and forest products is necessary for the conservation of
+                    forest.
+                </li>
+                <li class="list-group-item">
+                    The existing forests should be protected from diseases by spraying chemicals, antibiotics or
+                    development of pest-resistant strains of trees.
+                </li>
+                <li class="list-group-item">
+                Natural forest fires are also responsible for the destruction of huge forest covers. Latest fire fighting techniques should be adopted to conserve the forest. 
+                </li>
+                <!-- </ul> -->
+            </ul>
+        </ul>
+        <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+            <ul class="list-group list-group-flush" style="display: flex; flex-direction: row;" id="insights">
+
+            <ul style="display: flex; flex-direction: column; gap: 4px; ">
+                <p class="lead" style="font-weight: 600;color: #243D25;">How can we improve WQI</p>
+                
+                <li class="list-group-item">
+                    Waste water management
+                </li>
+                <li class="list-group-item">
+                    Clean up and restore existing waterways and water bodies
+                </li>
+                <li class="list-group-item">
+                    Reduce water footprint
+                </li>
+                <li class="list-group-item">
+                    Efficient irrigation
+                </li>
+                <li class="list-group-item">
+                    Rain water harvesting
+                </li>
+
+                <!-- </ul> -->
+            </ul>
+                <ul style="display: flex; flex-direction: column; gap: 2px; align-items: center;
+                justify-content: center;">
+                    <div class="trends">
+                        Mean WQI over the years
+                    </div>
+                    <div class="chartImg">
+                        <img id="weeklyAQI" style="height: fit-content; width: 100%;" src="/static/images/WQI.png"
+                            alt="Line Plot" style="width: 70%;">
+                    </div>
+                </ul>
+
+            </ul>
+            </ul>
+
+        </div>
+        <ul class="list-group list-group-flush" style="display: flex; gap: 4px; flex-direction: row;" id="insights">
+            <ul style="display: flex; flex-direction: column; gap: 2px; align-items: center;
+                justify-content: center;">
+                <div class="trends">
+                    Boxplot of AQIs of Indian Cities
+                </div>
+                <div class="chartImg">
+                    <img id="weeklyAQI" style="height: fit-content; width: 100%;" src="/static/images/AQI_cities.png"
+                        alt="Line Plot" style="width: 70%;">
+                </div>
+            </ul>
+        </ul>
+    </div>
+
+
 </div>
-<div class="trends" >
-    Forest Cover
-   </div>
-    <div class="chartImg">
-    <img id="weeklyAQI" src="/static/images/trees.png" alt="Line Plot" style="width: 60%;">
-</div>
-<div class="trends" >
-    Mean WQI over the years
-   </div>
-    <div class="chartImg">
-    <img id="weeklyAQI" src="/static/images/WQI.png" alt="Line Plot"  style="width: 70%;">
-</div>
 
-<div class="trends" >
-    Boxplot of AQIs of Indian Cities
-   </div>
-    <div class="chartImg">
-    <img id="weeklyAQI" src="/static/images/AQI_cities.png" alt="Line Plot"  style="width: 70%;">
-</div>
 
-    <!-- <img id="yearlyAQI" src="{{ bar_plot }}" alt="Line Plot"> -->
+<!-- <img id="yearlyAQI" src="{{ bar_plot }}" alt="Line Plot"> -->
 
 
 </div>
-    
+
 
 </div>
 
 
-    
+
 
 </div>
 <!-- <script>

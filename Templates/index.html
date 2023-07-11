@@ -53,7 +53,7 @@
                                 <div class="font-italic">&nbsp; ppm</div>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item" id="type">{{type}}</li>
+                                <li class="list-group-item" style="align-items: center;" id="type">{{type}}</li>
 
                             </ul>
                         </div>
@@ -141,28 +141,28 @@
 
                             <img style="height: 70px; width: fit-content;" src="\static\images\umbrella.png">
                             <p>Carry Umbrella</p>
-                            <div id="umbrella" ></div>
+                            <div id="umbrella"></div>
                         </ul>
                         <ul
                             style="display: flex; flex-direction: column; gap: 2px ; align-items: center; justify-content: center;">
 
                             <img style="height: 70px; width: fit-content;" src="\static\images\mask.png">
                             <p>Wear Mask</p>
-                            <div id="mask" ></div>
+                            <div id="mask"></div>
                         </ul>
                         <ul
                             style="display: flex; flex-direction: column; gap: 2px ; align-items: center; justify-content: center;">
 
                             <img style="height: 70px; width: fit-content;" src="\static\images\indoors.png">
                             <p>Stay Indoors</p>
-                            <div id="indoor" ></div>
+                            <div id="indoor"></div>
                         </ul>
                         <ul
                             style="display: flex; flex-direction: column; gap: 2px  ; align-items: center; justify-content: center;">
 
                             <img style="height: 70px; width: fit-content;" src="\static\images\purifier.png">
                             <p>Use Purifiers</p>
-                            <div id="purifier" ></div>
+                            <div id="purifier"></div>
                         </ul>
                     </ul>
                 </div>
@@ -187,15 +187,21 @@
                 </div>
 
 
-
-
             </div>
             <div class="trends" style="display: none;" id="trendheading">
                 Historical Trends
             </div>
 
             <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
-                <!-- <p class="lead" style="font-weight: 600;color: #243D25;">Real-time Insights:</p> -->
+                <center>
+                <p class="lead" style="font-weight: 600;color: #243D25;">Calender Heat-map for the past 1 year AQI</p>
+                
+                <div style=" display: inline-block ; padding-top: 1.5rem;margin-bottom: 1.5rem;padding-bottom: 1.5rem;">
+                    
+                    <div id="cal-heatmap" class="font-weight-bold" style="font-size: large;"></div>
+                    <div id="cal-heatmap-legend" class="font-weight-bold" style='float: "center"; '></div>
+                </div></center>
+                
                 <ul class="list-group list-group-flush" style="display: flex; gap: 4px; flex-direction: row;"
                     id="insights">
                     <div class="chartImg">
@@ -205,18 +211,15 @@
                         <img id="yearlyAQI" style="height: fit-content; width: 100%;" class="chartImg"
                             src="{{ bar_plot }}">
                     </div>
-                </ul>
-            </div>
-
-            
-
-
-
+                </ul>                
+            </div>            
         </div>
     </div>
-    {% else %}
+</div>
 
-    {% endif %}
+{% else %}
+
+{% endif %}
 </div>
 </div>
 
@@ -238,6 +241,7 @@
 
     if (result) {
 
+        let data = [];
         var aqiclass = "";
         var aqiWarning = "";
         var result = '{{aqi}}';
@@ -263,7 +267,7 @@
         }
         else if (result <= 200) {
             aqiclass = "Very Poor";
-            aqiWarning = "Some members of the general public may experience health effects; members of sensitive groups may experience more serious health effects."
+            aqiWarning = "Some members of general public may experience health effects; members of sensitive groups may experience more serious health effects."
         }
         else if (result <= 250) {
             aqiclass = "Severe"
@@ -274,8 +278,17 @@
             aqiWarning = "Health warning of emergency conditions: everyone is more likely to be affected."
             indoor = "Required"
         }
+        data.push(aqiWarning)
 
+        var max_temp = Math.max('{{maxtemp}}', '{{temp}}')
+        var min_temp = Math.min('{{mintemp}}', '{{temp}}')
 
+        if (max_temp >= 40) {
+            data.push("High Temperatures: Avoid going out in the sun and drink sufficient water and as often as possible")
+        }
+
+        document.getElementById("mintemp").innerHTML = min_temp;
+        document.getElementById("maxtemp").innerHTML = max_temp;
         document.getElementById("type").innerHTML = aqiclass;
         document.getElementById("mask").innerHTML = mask;
         document.getElementById("indoor").innerHTML = indoor;
@@ -287,6 +300,7 @@
         }
         else {
             document.getElementById("mask").style.color = "red";
+            data.push("Do not forget to wear a mask if you go out!")
         }
         if (purifier == "Not required") {
             document.getElementById("purifier").style.color = "grey";
@@ -309,10 +323,10 @@
         else {
             document.getElementById("umbrella").innerHTML = "Required";
             document.getElementById("umbrella").style.color = "red";
+            data.push("It may rain today. Remember to carry an umbrella with you.")
         }
 
-        let data = [];
-        data.push(aqiWarning)
+
         let list = document.getElementById("insights");
         for (i = 0; i < data.length; ++i) {
             let li = document.createElement('li');
@@ -321,11 +335,83 @@
             list.appendChild(li);
         }
 
+
+
+
+        var json = '{{data}}'
+        json = json.replace(/&#39;/ig, '"');
+
+        const sample = JSON.parse(json)
+        console.log(typeof (json))
+        console.log(typeof (sample))
+
+        const cal = new CalHeatmap();
+        cal.paint(
+            {
+                data: {
+                    source: sample,
+                    
+                    x: 'Date',
+                    y: d => +d['value'],
+                    groupY: 'max',
+                },
+                date: { start: new Date('2022-08-01') },
+                range: 12,
+                scale: {
+                    color: {
+                        // scheme: 'PRGn',
+                        // range: ["yellow", "red"],
+                        // interpolate: 'rgb',
+                        scheme: 'Rainbow',
+                        type: 'linear',
+                        domain: [0, 500],
+                    },
+                },
+                domain: {
+                    type: 'month',
+                    gutter: 5,
+                    padding: [0, 7, 7, 0],
+                    label: { position: 'top' , text: "MMM YYYY"},
+                },
+                subDomain: { type: 'day', radius: 2, width: 10 },
+                itemSelector: '#cal-heatmap',
+            },
+            [
+                [
+                    Tooltip,
+                    {
+                        text: function (date, value, dayjsDate) {
+                            return (
+
+                                (Math.round(value) ? Math.round(value) + 'ppm AQI' : 'No data') +
+                                ' on ' +
+                                dayjsDate.format('LL')
+                            );
+                        },
+                    },
+                ],
+                [
+                    Legend,
+                    {
+                        tickSize: 0,
+                        width: 800,
+                        itemSelector: '#cal-heatmap-legend',
+                        label: 'AQI Values',
+                    },
+                ],
+            ]
+        );
+
+
         x.style.display = 'flex';
         x.style.flexWrap = 'wrap';
         x.style.justifyContent = 'space-between';
         trendheading.style.display = 'flex';
         predheading.style.display = 'flex';
+
+
     }
+
+
 </script>
 {% endblock %}

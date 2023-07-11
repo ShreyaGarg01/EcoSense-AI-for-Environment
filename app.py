@@ -23,6 +23,8 @@ import io
 from flask import Response
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
+import json
+from generate_json import make_json
 
 #  FLASK APP 
 app = Flask(__name__)
@@ -120,11 +122,14 @@ def result():
         plot_filename_aqi_yearly = 'static/bar_plot.png'
         plt.savefig(plot_filename_aqi_yearly)
         plot_filename_aqi_yearly = '/static/bar_plot.png'
-
+        make_json(path)
+        with open('city_AQI.json') as f:
+            data = json.load(f)
+       
         return render_template('index.html', aqi=finalAQI, result=finalAQI, maxtemp = maxtemp, mintemp=mintemp,
                             humidity=humidity,preci=preci,pressure=pressure, temp=temp, visibility=visibility,
                             windspeed=windspeed,  title=title, plot_filename=plot_filename_aqi, 
-                            bar_plot=plot_filename_aqi_yearly, city=location)
+                            bar_plot=plot_filename_aqi_yearly, city=location, data = data )
         
     return render_template('AQI.html',  title=title)
 

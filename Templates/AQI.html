@@ -5,8 +5,9 @@
 
 <div class="container">
     <!-- <div class="col-lg-8 mb-4 contact-left"> -->
+    <br>
     <form method="POST" action="/result" class="form-inline" id="predictionForm"
-        style="gap: 2.7%;margin-bottom:5rem;width: 41vw;padding: 1.8%;background-color: #F7FFE5;border-radius: 5px;box-shadow: 3px 3px #E1ECC8;">
+        style="gap: 2.7%;margin-bottom:3rem;width: 41vw;padding: 1.8%;background-color: #F7FFE5;border-radius: 5px;box-shadow: 3px 3px #E1ECC8;">
         <div class="form-group">
             <label for="Location"><b>City: &nbsp; </b></label>
             <!-- <input type="text" class="form-control" id="Location" name="Location" required /> -->
@@ -34,145 +35,405 @@
 
 
     </form>
+    {% if result %}
+    <div>
+        <div class="trends" style="display: none;" id="predheading">
+            Predictions
+        </div>
+        <div class="pricing-box">
 
-    <div class="pricing-box">
-    
-        <div class="popup" style="display:none; margin-top: 2%;" id="resultCard">
-            <h3>
-                <div class="mb-4">
-                    <div class="card h-100" style="width: 20vw;">
-                        <h3 class="card-header">AQI</h3>
-                        <div class="card-body">
+            <div class="popup" style="display:none;" id="resultCard">
+                <h6>
+                    <div class="mb-4">
+                        <div class="card " style="width: 20vw;">
+                            <h6 class="card-header">AQI</h6>
+                            <div class="card-body" style="display: flex;align-items: center;">
 
-                            <div class="display-4" id="result">{{result}}</div>
-                            <div class="font-italic">ppm</div>
+                                <div class="display-4" id="result">{{aqi}}</div>
+                                <div class="font-italic">&nbsp; ppm</div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="align-items: center;"id="type">{{type}}</li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </h6>
+                <h6 id="result">
+                    <div class="mb-4">
+                        <div class="card " style="width: 20vw;">
+                            <h6 class="card-header">Temperature</h6>
+
+                            <div class="card-body" style="display: flex;align-items: center;">
+                                <div class="display-4" id="temp">{{ temp }}</div>
+                                <div class="font-italic">&nbsp; &deg;C</div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="display: flex;">Max-temp: &nbsp; <div id="maxtemp">{{
+                                        maxtemp}} &deg;C </div>
+                                </li>
+                                <li class="list-group-item" style="display: flex;">Min-temp: &nbsp; <div id="mintemp">{{
+                                        mintemp}} &deg;C</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </h6>
+                <h6 id="result">
+                    <div class="mb-4">
+                        <div class="card " style="width: 20vw;">
+                            <h6 class="card-header">Precipitation</h6>
+
+                            <div class="card-body" style="display: flex;align-items: center;">
+
+                                <div class="display-4" id="preci">{{ preci }}</div>
+                                <div class="font-italic">&nbsp; mm</div>
+
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="display: flex;">Humidity: &nbsp;<div id="humidity">
+                                        {{humidity}}</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </h6>
+                <h6 id="result">
+                    <div class="mb-4">
+                        <div class="card " style="width: 20vw;">
+                            <h6 class="card-header">Pressure</h6>
+                            <div class="card-body" style="display: flex;align-items: center;">
+
+                                <div class="display-4" id='pressure'>{{ pressure }}</div>
+                                <div class="font-italic">&nbsp; mbar</div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="display: flex;">Wind Speed: &nbsp; <div
+                                        id="windspeed">{{ windspeed}} kmph</div>
+                                </li>
+                                <li class="list-group-item" style="display: flex;">Visibility: &nbsp; <div
+                                        id="visibility">{{ visibility}}</div>
+                                </li>
+
+                            </ul>
                         </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" id="type">{{type}}</li>
-
+                </h6>
+                <!-- INSIGHTS -->
+                <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+                    <p class="lead" style="font-weight: 600;color: #243D25;">Real-time Insights:</p>
+                    <ul class="list-group list-group-flush" style="display: flex; gap: 4px;" id="insights">
                     </ul>
-                </div></div>
+                </div>
 
-            </h3>
-            <h3 id="result">
-                <div class="mb-4">
-                    <div class="card h-100" style="width: 20vw;">
-                        <h3 class="card-header">Temperature</h3>
+                <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+                    <p class="lead" style="font-weight: 600;color: #243D25;">Health Advice for {{city}}:</p>
+                    <ul class="list-group list-group-flush" style="display: flex; flex-direction: row; gap: 4px;"
+                        id="insights">
+                        <ul style="display: flex; flex-direction: column; gap: 2px; align-items: center;
+                        justify-content: center;">
 
-                        <div class="card-body">
-                            <div class="display-4" id="temp">{{ temp }}</div>
-                            <div class="font-italic">C</div>
-                        </div>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Max-temp = <div id="maxtemp">{{ maxtemp}}</div>
-                        </li>
-                        <li class="list-group-item">Min-temp = <div id="mintemp">{{ mintemp}}</div>
-                        </li>
+                            <img style="height: 70px; width: fit-content;" src="\static\images\umbrella.png">
+                            <p>Carry Umbrella</p>
+                            <div id="umbrella"></div>
+                        </ul>
+                        <ul
+                            style="display: flex; flex-direction: column; gap: 2px ; align-items: center; justify-content: center;">
+
+                            <img style="height: 70px; width: fit-content;" src="\static\images\mask.png">
+                            <p>Wear Mask</p>
+                            <div id="mask"></div>
+                        </ul>
+                        <ul
+                            style="display: flex; flex-direction: column; gap: 2px ; align-items: center; justify-content: center;">
+
+                            <img style="height: 70px; width: fit-content;" src="\static\images\indoors.png">
+                            <p>Stay Indoors</p>
+                            <div id="indoor"></div>
+                        </ul>
+                        <ul
+                            style="display: flex; flex-direction: column; gap: 2px  ; align-items: center; justify-content: center;">
+
+                            <img style="height: 70px; width: fit-content;" src="\static\images\purifier.png">
+                            <p>Use Purifiers</p>
+                            <div id="purifier"></div>
+                        </ul>
                     </ul>
-                </div></div>
+                </div>
 
-            </h3>
-            <h3 id="result">
-                <div class="mb-4">
-                    <div class="card h-100" style="width: 20vw;">
-                        <h3 class="card-header">Precipitation</h3>
 
-                        <div class="card-body">
 
-                            <div class="display-4" id="preci">{{ preci }}</div>
-                            <div class="font-italic">mm</div>
+                <br>
 
-                        </div>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Humidity = <div id="humidity">{{ humidity}}</div>
+                <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+                    <p class="lead" style="font-weight: 600;color: #243D25;">Action Plan for Environment</p>
+                    <ul class="list-group list-group-flush" style="display: flex; gap: 4px;" id="insights">
+                        <li class="list-group-item">
+                            Plant a Tree and Take Care of It.
+                        </li>
+                        <li class="list-group-item">
+                            Use Public Transport or Walk Whenever Possible.
+                        </li>
+                        <li class="list-group-item">
+                            Choose reusable over single-use.
                         </li>
                     </ul>
                 </div>
+
+
+           
+
+
+
+
+
+            </div>
+            <div class="trends" style="display: none;" id="trendheading">
+                Historical Trends
             </div>
 
-            </h3>
-
-
-
-            <h3 id="result">
-                <div class="mb-4">
-                    <div class="card h-100" style="width: 20vw;">
-                        <h3 class="card-header">Pressure</h3>
-                        <div class="card-body">
-
-                            <div class="display-4" id='pressure'>{{ pressure }}</div>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Wind Speed = <div id="windspeed">{{ windspeed}}</div>
-                            </li>
-                            <li class="list-group-item">Visibility = <div id="visibility">{{ visibility}}</div>
-                            </li>
-
-                        </ul>
+            <div class="jumbotron" style="padding-top: 1.5rem;margin-top: 1.5rem;padding-bottom: 1.5rem;">
+                <!-- <p class="lead" style="font-weight: 600;color: #243D25;">Real-time Insights:</p> -->
+                <ul class="list-group list-group-flush" style="display: flex; gap: 4px; flex-direction: row;"
+                    id="insights">
+                    <div class="chartImg">
+                        <img id="weeklyAQI" style="height: fit-content; width: 100%;" src="{{ plot_filename }}">
                     </div>
-                </div>
-            </h3>
+                    <div class="chartImg">
+                        <img id="yearlyAQI" style="height: fit-content; width: 100%;" class="chartImg"
+                            src="{{ bar_plot }}">
+                    </div>
+                </ul>
+            </div>
 
-            <br>
-            
+            <svg id="svg"></svg>
+
         </div>
-        <img id="weeklyAQI" src="{{ plot_filename }}" alt="Line Plot">
-        <img id="yearlyAQI" src="{{ bar_plot }}" alt="Line Plot">
-
-
     </div>
+    <div id="cal-heatmap"></div>
+
+    {% else %}
+
+    {% endif %}
 </div>
 </div>
-
-
-
-
 
 </div>
 <script>
-    var resultDiv = document.getElementById('result');
+    // var resultDiv = document.getElementById('result');
     var x = document.getElementById('resultCard');
-    var temp = document.getElementById('temp')
+
+    var trendheading = document.getElementById('trendheading');
+    var predheading = document.getElementById('predheading');
 
     var urlParams = new URLSearchParams(window.location.search);
-    var result = urlParams.get('result');
-    var temperature = urlParams.get('temp');
-    var aqiclass = "";
-    if (result <= 50) aqiclass = "Good"
-    else if (result <= 100) aqiclass = "Satisfactory"
-    else if (result <= 150) aqiclass = "Moderate"
-    else if (result <= 200) aqiclass = "Poor"
-    else if (result <= 250) aqiclass = "Very Poor"
-    else aqiclass = "Severe"
+
+    // var temperature = urlParams.get('temp');
+
+
+    var result = document.getElementById('result');;
+
 
     if (result) {
-        resultDiv.innerHTML = result;
-        temp.innerHTML = temperature;
-        document.getElementById("maxtemp").innerHTML = Math.max(urlParams.get('maxtemp'), temperature);
-        document.getElementById("mintemp").innerHTML = urlParams.get('mintemp');
-        document.getElementById("pressure").innerHTML = urlParams.get('pressure');
-        document.getElementById("visibility").innerHTML = urlParams.get('visibility');
-        document.getElementById("windspeed").innerHTML = urlParams.get('windspeed');
-        document.getElementById("preci").innerHTML = urlParams.get('preci');
-        document.getElementById("humidity").innerHTML = urlParams.get('humidity');
+
+        let data = [];
+        var aqiclass = "";
+        var aqiWarning = "";
+        var result = '{{aqi}}';
+        var mask = "Required"
+        var indoor = "Not required"
+        var purifier = "Required"
+
+        if (result <= 50) {
+            aqiclass = "Good";
+            aqiWarning = "Air quality is satisfactory, and air pollution poses little or no risk."
+            mask = "Not required"
+            purifier = "Not required"
+        }
+        else if (result <= 100) {
+            aqiclass = "Moderate";
+            purifier = "Not required"
+
+            aqiWarning = "Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution."
+        }
+        else if (result <= 150) {
+            aqiclass = "Poor";
+            aqiWarning = "Members of sensitive groups may experience health effects. The general public is less likely to be affected."
+        }
+        else if (result <= 200) {
+            aqiclass = "Very Poor";
+            aqiWarning = "Some members of general public may experience health effects; members of sensitive groups may experience more serious health effects."
+        }
+        else if (result <= 250) {
+            aqiclass = "Severe"
+            aqiWarning = "Health alert: The risk of health effects is increased for everyone."
+        }
+        else {
+            aqiclass = "Hazardous";
+            aqiWarning = "Health warning of emergency conditions: everyone is more likely to be affected."
+            indoor = "Required"
+        }
+        data.push(aqiWarning)
+
+        var max_temp = Math.max('{{maxtemp}}', '{{temp}}')
+        var min_temp = Math.min('{{mintemp}}', '{{temp}}')
+
+        if (max_temp >= 40){
+            data.push("High Temperatures: Avoid going out in the sun and drink sufficient water and as often as possible")
+        }
+
+        document.getElementById("mintemp").innerHTML = min_temp;
+        document.getElementById("maxtemp").innerHTML = max_temp;
         document.getElementById("type").innerHTML = aqiclass;
-        var image = document.getElementById("weeklyAQI");
-            if (image) {
-                image.setAttribute("src", urlParams.get('plot_filename'));
-                
-            }
-        var image2 = document.getElementById("yearlyAQI");
-            if (image2) {
-                image2.setAttribute("src", urlParams.get('bar_plot'));
-                
-            }
-            
-        x.style.display = 'flex';
+        document.getElementById("mask").innerHTML = mask;
+        document.getElementById("indoor").innerHTML = indoor;
+        document.getElementById("purifier").innerHTML = purifier;
+
+
+        if (mask == "Not required") {
+            document.getElementById("mask").style.color = "grey";
+        }
+        else {
+            document.getElementById("mask").style.color = "red";
+            data.push("Do not forget to wear a mask if you go out!")
+        }
+        if (purifier == "Not required") {
+            document.getElementById("purifier").style.color = "grey";
+        }
+        else {
+            document.getElementById("purifier").style.color = "red";
+        }
+        if (indoor == "Required") {
+            document.getElementById("indoor").style.color = "red";
+        }
+        else {
+            document.getElementById("indoor").style.color = "grey";
+        }
+
+        var rain = "{{preci}}"
+        if (rain == 0) {
+            document.getElementById("umbrella").innerHTML = "Not required";
+            document.getElementById("umbrella").style.color = "grey";
+        }
+        else {
+            document.getElementById("umbrella").innerHTML = "Required";
+            document.getElementById("umbrella").style.color = "red";
+            data.push("It may rain today. Remember to carry an umbrella with you.")
+        }
+
+        
+        let list = document.getElementById("insights");
+        for (i = 0; i < data.length; ++i) {
+            let li = document.createElement('li');
+            li.innerText = data[i];
+            li.classList.add("list-group-item");
+            list.appendChild(li);
+        }
+
+        // const sample = [
+        // { "Date": "2017-08-30", "value": "9510" },
+        // { "Date": "2010-05-23", "value": "2096" },
+        // { "Date": "2014-01-10", "value": "11451" },
+        // { "Date": "2019-03-23", "value": "4393" },
+        // { "Date": "2013-03-07", "value": "11811" },
+        // { "Date": "2016-10-25", "value": "9897" },
+        // { "Date": "2012-04-09", "value": "7342" },
+        // { "Date": "2019-02-28", "value": "8749" },
+        // { "Date": "2010-09-17", "value": "4535" },
+        // { "Date": "2014-05-07", "value": "11354" },
+        // { "Date": "2015-01-23", "value": "9172" },
+        // { "Date": "2012-05-02", "value": "9222" },
+        // { "Date": "2017-04-12", "value": "10335" },
+        // { "Date": "2013-08-23", "value": "10497" },
+        // { "Date": "2014-07-21", "value": "9484" },
+        // { "Date": "2018-12-21", "value": "6395" },
+        // { "Date": "2018-11-28", "value": "8632" },
+        // { "Date": "2014-08-07", "value": "10206" }]
+
+        var json = '{{data}}'
+        json = json.replace(/&#39;/ig,'"');
+        // json = json.replace(""date"",Date);
+        // json = json.replace("value",value);
+
+
+        // console.log(json)
+        // const sample = json
+        const sample = JSON.parse(json)
+        console.log(typeof(json))
+        console.log(typeof(sample))
+        // console.log(typeof(x))
+
+
+
+        // const Date = sample["date"]
+        // const value = sample["value"]
+
+        
+        // sample.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+
+        const cal = new CalHeatmap();
+cal.paint(
+  {
+    data: {
+      source: sample,
+    //   type: 'csv',
+      x: 'Date',
+      y: d => +d['value'],
+      groupY: 'max',
+    },
+    date: { start: new Date('2023-01-01') },
+    range: 8,
+    scale: {
+      color: {
+        type: 'quantize',
+        scheme: 'Oranges',
+        domain: [25, 50, 75, 100,125, 150, 200, 250, 300, 350, 400],
+      },
+    },
+    domain: {
+      type: 'month',
+    },
+    subDomain: { type: 'day', radius: 2 },
+    itemSelector: '#cal-heatmap',
+  },
+  [
+    [
+      Tooltip,
+      {
+        text: function (date, value, dayjsDate) {
+          return (
+            (value ? value + 'AQI' : 'No data') +
+            ' on ' +
+            dayjsDate.format('LL')
+          );
+        },
+      },
+    ],
+    [
+      Legend,
+      {
+        tickSize: 0,
+        width: 100,
+        itemSelector: '#ex-wind-legend',
+        label: 'Seattle wind (km/h)',
+      },
+    ],
+  ]
+);
+
+x.style.display = 'flex';
         x.style.flexWrap = 'wrap';
-        x.style.justifyContent = 'space-between'
+        x.style.justifyContent = 'space-between';
+        trendheading.style.display = 'flex';
+        predheading.style.display = 'flex';
+       
+        
     }
 </script>
 {% endblock %}
