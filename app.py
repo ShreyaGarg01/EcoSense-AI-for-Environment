@@ -91,7 +91,7 @@ def analyse():
 
 @ app.route('/result' ,  methods=['GET', 'POST'])
 def result():
-    title = 'AQI'
+    title = 'Predictions'
     if request.method == 'POST':
         location = str(request.form['Location'])
         date = request.form['Date']
@@ -131,7 +131,7 @@ def result():
                             windspeed=windspeed,  title=title, plot_filename=plot_filename_aqi, 
                             bar_plot=plot_filename_aqi_yearly, city=location, data = data )
         
-    return render_template('AQI.html',  title=title)
+    return render_template('index.html',  title=title)
 
 
 if __name__ == '__main__':
